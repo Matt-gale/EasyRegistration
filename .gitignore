@@ -22,7 +22,6 @@ x86/
 bld/
 [Bb]in/
 [Oo]bj/
-[Ll]og/
 
 # Visual Studio 2015 cache/options directory
 .vs/
@@ -286,3 +285,36 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
+
+
+#Angular
+node_modules/
+node_libs/
+npm-debug.log
+project.lock.json
+
+# Javascript files
+*.js.map
+*.js
+![Gg]runtfile.js
+!systemjs.config.js
+!application.insights.js
+!gtmhelper.js
+!rollup-config.js
+*.ngstyle.ts
+*.ngfactory.ts
+*.ngsummary.json
+
+#Android
+.gradle
+/local.properties
+/.idea
+.DS_Store
+/build
+/captures
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
