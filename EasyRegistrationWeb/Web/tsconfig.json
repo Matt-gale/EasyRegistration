@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": [ "es2015", "dom" ],
+    "suppressImplicitAnyIndexErrors": true,
+
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "declaration": false,
+    "baseUrl": "./",
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@spa/app*": [ "app*" ]
+    }
+  }
+}
