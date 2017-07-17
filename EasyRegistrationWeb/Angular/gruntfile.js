@@ -58,7 +58,8 @@ module.exports = function (grunt) {
                         dest: outputWWWRoot + "/app/",
                         nonull: true,
                         src: [
-                            "src/app/**/*.html"
+                            "src/app/**/*.html",
+                            "src/app/**/*.css"
                         ],
                         rename: function (dest, src) {
                             return dest + src.replace('src/app/', '');
@@ -161,6 +162,6 @@ module.exports = function (grunt) {
         "copy:htmljit",
         "less",
         "shell:ngc",
-        "copy:indexjit",
+        "copy:indexjit"
     ]);
 };
