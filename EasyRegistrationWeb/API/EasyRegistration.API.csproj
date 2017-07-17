@@ -2,30 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp1.1</TargetFramework>
-	<TypeScriptCompilerBlocked>true</TypeScriptCompilerBlocked>
-	<PackageTargetFallback>portable-net45+win8</PackageTargetFallback>
-	<PostBuildEvent></PostBuildEvent>
+  <TypeScriptCompilerBlocked>true</TypeScriptCompilerBlocked>
+  <PackageTargetFallback>portable-net45+win8</PackageTargetFallback>
+  <PostBuildEvent></PostBuildEvent>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="webpack.config.js" />
-    <Content Include="webpackconfig\helpers.js" />
-    <Content Include="webpackconfig\webpack.common.js" />
-    <Content Include="webpackconfig\webpack.dev.js" />
-    <Content Include="wwwroot\app\app.component.css" />
-    <Content Include="wwwroot\app\app.component.html" />
-    <Content Include="wwwroot\app\app.component.ts" />
-    <Content Include="wwwroot\app\app.module.ts" />
-    <Content Include="wwwroot\favicon.ico" />
-    <Content Include="wwwroot\index.html" />
-    <Content Include="wwwroot\vendor.js" />
-    <Content Include="wwwroot\vendor.ts">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="wwwroot\main.ts" />
-    <Content Include="wwwroot\polyfills.ts" />
-    <Content Include="wwwroot\styles.css" />
-    <Content Include="wwwroot\typings.d.ts" />
+    <Compile Remove="wwwroot\app\**" />
+    <Compile Remove="wwwroot\node_libs\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -49,7 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\assets\" />
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 
 </Project>

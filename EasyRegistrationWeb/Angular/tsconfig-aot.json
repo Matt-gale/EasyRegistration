@@ -1,12 +1,11 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "module": "commonjs",
+    "module": "es2015",
     "moduleResolution": "node",
     "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "lib": [ "es2015", "dom" ],
     "suppressImplicitAnyIndexErrors": true,
 
     "noImplicitAny": false,
@@ -16,6 +15,11 @@
     "allowSyntheticDefaultImports": true,
     "paths": {
       "@spa/app*": [ "app*" ]
-    }
-  }
+    },
+    "outDir": "../API/wwwroot/aot"
+  },
+  "exclude": [
+    "main-jit.ts",
+    "node_modules"
+  ]
 }

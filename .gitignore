@@ -291,19 +291,20 @@ __pycache__/
 node_modules/
 node_libs/
 npm-debug.log
-project.lock.json
+project-lock.json
+!rollup-config.js
+*.ngstyle.ts
+*.ngfactory.ts
+*.ngsummary.json
+!webpack.*.js
+!systemjs.config.js
 
 # Javascript files
 *.js.map
 *.js
 ![Gg]runtfile.js
-!systemjs.config.js
 !application.insights.js
 !gtmhelper.js
-!rollup-config.js
-*.ngstyle.ts
-*.ngfactory.ts
-*.ngsummary.json
 
 #Android
 .gradle
@@ -318,3 +319,6 @@ project.lock.json
 *.iws
 *.iml
 *.ipr
+
+#ignore the wwwroot output in the API project
+**/API/wwwroot
