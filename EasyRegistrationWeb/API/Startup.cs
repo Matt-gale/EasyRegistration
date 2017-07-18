@@ -12,6 +12,9 @@ using EasyRegistration.BusinessLogic;
 using EasyRegistration.DataAccessLayer;
 using EasyRegistration.BusinessLogic.Interfaces;
 using EasyRegistration.BusinessLogic.Concretes;
+using EasyRegistration.DataAccessLayer.Interfaces;
+using EasyRegistration.DataAccessLayer.Concretes;
+using EasyRegistration.DataAccessLayer.Entities;
 
 namespace EasyRegistrationWeb
 {
@@ -37,7 +40,11 @@ namespace EasyRegistrationWeb
 
             services.AddSingleton<IAccountLogic, AccountLogic>();
 
-            services.AddSingleton<IAccountLogic, AccountLogic>();
+            services.AddSingleton<IAccountRepository, AccountRepository>();
+
+            //set up sqlite or sqlserver database
+            services = EasyRegistrationDBContext.DIRegistration(services, "Data Source=EasyRegistration.db", true);
+            //services = EasyRegistrationDBContext.DIRegistration(services, @"Server=(localdb)\mssqllocaldb;Database=EasyRegistration;Trusted_Connection=True;");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

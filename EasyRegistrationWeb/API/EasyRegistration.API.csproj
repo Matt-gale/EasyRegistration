@@ -29,6 +29,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BusinessLogic\EasyRegistration.BusinessLogic.csproj" />
+    <ProjectReference Include="..\DataAccessLayer\EasyRegistration.DataAccessLayer.csproj" />
     <ProjectReference Include="..\DTO\EasyRegistration.DTO.csproj" />
   </ItemGroup>
 

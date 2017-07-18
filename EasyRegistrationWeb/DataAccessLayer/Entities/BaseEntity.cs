@@ -9,6 +9,7 @@ namespace EasyRegistration.DataAccessLayer.Entities
         public DateTime CreatedOn { get; set; }
         public DateTime UpdatedOn { get; set; }
         public int UpdateCount { get; set; }
+
         [Timestamp]
         public byte[] TimeStamp { get; set; }
     }
