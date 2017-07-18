@@ -9,6 +9,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using EasyRegistration.BusinessLogic;
+using EasyRegistration.DataAccessLayer;
+using EasyRegistration.BusinessLogic.Interfaces;
+using EasyRegistration.BusinessLogic.Concretes;
 
 namespace EasyRegistrationWeb
 {
@@ -32,7 +35,9 @@ namespace EasyRegistrationWeb
             // Add framework services.
             services.AddMvc();
 
-            services = services.InjectBusinessLogic();
+            services.AddSingleton<IAccountLogic, AccountLogic>();
+
+            services.AddSingleton<IAccountLogic, AccountLogic>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
