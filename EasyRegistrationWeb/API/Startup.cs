@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using EasyRegistration.BusinessLogic;
 
 namespace EasyRegistrationWeb
 {
@@ -30,6 +31,8 @@ namespace EasyRegistrationWeb
         {
             // Add framework services.
             services.AddMvc();
+
+            services = services.InjectBusinessLogic();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
