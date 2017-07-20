@@ -11,9 +11,9 @@ import UIKit
 class TransitionViewController: UIViewController {
     private var currentViewController: UIViewController!
     
-    private lazy var loginViewController: ViewController = {
+    private lazy var loginViewController: SignInViewController = {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        var viewController = storyboard.instantiateViewController(withIdentifier: "loginVC") as! ViewController
+        var viewController = storyboard.instantiateViewController(withIdentifier: "loginVC") as! SignInViewController
         
         return viewController
     }()
@@ -52,7 +52,7 @@ class TransitionViewController: UIViewController {
         self.transition(from: currentViewController,
                         to: signUpViewController,
                         duration: 0.5,
-                        options: .transitionFlipFromLeft,
+                        options: .transitionCrossDissolve,
                         animations: nil,
                         completion: { _ in
                             self.currentViewController.removeFromParentViewController()
@@ -71,7 +71,7 @@ class TransitionViewController: UIViewController {
         self.transition(from: currentViewController,
                         to: signUpViewController,
                         duration: 0.5,
-                        options: .transitionFlipFromRight,
+                        options: .transitionCrossDissolve,
                         animations: nil,
                         completion: { _ in
                             self.currentViewController.removeFromParentViewController()

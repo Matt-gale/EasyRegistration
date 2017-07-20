@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SignInViewController.swift
 //  EasyRegistrationIOS
 //
 //  Created by Ye He on 14/7/17.
@@ -8,8 +8,8 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class SignInViewController: UIViewController {
+    
     @IBOutlet weak var emailTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
     var EmailBorder: CAShapeLayer!
@@ -20,11 +20,35 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupPasswordLayer()
+        
+        setupEmailLayer()
+    }
+    
+    private func setupEmailLayer() {
         let path = UIBezierPath()
         let yPos = emailTF.bounds.size.height - width
         
         let start = CGPoint(x: 0, y: yPos)
         let end = CGPoint(x: emailTF.bounds.size.width, y: yPos)
+        path.move(to: start)
+        path.addLine(to: end)
+        
+        EmailBorder = CAShapeLayer()
+        EmailBorder.path = path.cgPath
+        EmailBorder.strokeEnd = 0.0
+        EmailBorder.strokeColor = borderColor
+        EmailBorder.fillColor = borderColor
+        EmailBorder.lineWidth = 2.0
+        emailTF.layer.addSublayer(EmailBorder)
+    }
+    
+    private func setupPasswordLayer() {
+        let path = UIBezierPath()
+        let yPos = emailTF.bounds.size.height - width
+        
+        let start = CGPoint(x: 0, y: yPos)
+        let end = CGPoint(x: passwordTF.bounds.size.width, y: yPos)
         path.move(to: start)
         path.addLine(to: end)
         
@@ -37,23 +61,16 @@ class ViewController: UIViewController {
         PWDBorder.lineWidth = 2.0
         passwordTF.layer.addSublayer(PWDBorder)
         passwordTF.layer.masksToBounds = true
-        
-        //design path in layer
-        EmailBorder = CAShapeLayer()
-        EmailBorder.path = path.cgPath
-        EmailBorder.strokeEnd = 0.0
-        EmailBorder.strokeColor = borderColor
-        EmailBorder.fillColor = borderColor
-        EmailBorder.lineWidth = 2.0
-        emailTF.layer.addSublayer(EmailBorder)
     }
     
-    @IBAction func emailValueChanged(_ sender: Any) {
-        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.reload), object: nil)
-        self.perform(#selector(self.reload), with: nil, afterDelay: 0.5)
+    @IBAction func emailValueChanged(_ sender: UITextField) {
+        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.recheck(sender:)), object: sender)
+        self.perform(#selector(self.recheck(sender:)), with: sender, afterDelay: 0.5)
     }
     
-    @objc private func reload() {
+    
+    // todo: connect with tick and avoid duplicate layer creation
+    @objc private func recheck(sender: UITextField) {
         CATransaction.begin()
         CATransaction.setDisableActions(true)
         
@@ -106,8 +123,8 @@ class ViewController: UIViewController {
         }
         
         CATransaction.commit()
-      }
-
+    }
+    
     @IBAction func emailTFUnfocused(_ sender: UITextField) {
         CATransaction.begin()
         CATransaction.setDisableActions(true)
@@ -126,7 +143,7 @@ class ViewController: UIViewController {
             EmailBorder.removeAllAnimations()
             EmailBorder.strokeStart = 1.0
         }
-
+        
         CATransaction.commit()
     }
     
