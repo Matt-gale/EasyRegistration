@@ -31,7 +31,7 @@
         <!--Login In View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="loginVC" id="BYZ-38-t0r" userLabel="Login In View Controller" customClass="ViewController" customModule="EasyRegistrationIOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginVC" id="BYZ-38-t0r" userLabel="Login In View Controller" customClass="SignInViewController" customModule="EasyRegistrationIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -211,6 +211,7 @@
                                         <connections>
                                             <action selector="passwordTFFocused:" destination="5iL-2e-7dl" eventType="editingDidBegin" id="nbG-jX-ukJ"/>
                                             <action selector="passwordTFUnfocused:" destination="5iL-2e-7dl" eventType="editingDidEnd" id="hCZ-NO-arb"/>
+                                            <action selector="passwordValueChanged:" destination="5iL-2e-7dl" eventType="editingChanged" id="vpR-0A-YFN"/>
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s9Q-jl-LZa">

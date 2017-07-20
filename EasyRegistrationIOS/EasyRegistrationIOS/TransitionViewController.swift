@@ -11,9 +11,9 @@ import UIKit
 class TransitionViewController: UIViewController {
     private var currentViewController: UIViewController!
     
-    private lazy var loginViewController: ViewController = {
+    private lazy var loginViewController: SignInViewController = {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        var viewController = storyboard.instantiateViewController(withIdentifier: "loginVC") as! ViewController
+        var viewController = storyboard.instantiateViewController(withIdentifier: "loginVC") as! SignInViewController
         
         return viewController
     }()

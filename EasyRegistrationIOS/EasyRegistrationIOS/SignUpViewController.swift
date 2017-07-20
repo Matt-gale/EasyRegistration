@@ -12,8 +12,12 @@ class SignUpViewController: UIViewController {
     
     @IBOutlet weak var emailTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
-    var EmailBorder: CAShapeLayer!
-    var TickLayer: CAShapeLayer!
+    
+    var emailBorder = CAShapeLayer()
+    var passwordBorder = CAShapeLayer()
+    
+    var emailTick = CAShapeLayer()
+    var passwordTick = CAShapeLayer()
     
     let borderColor = UIColor(red: 31 / 255.0, green: 163 / 255.0, blue: 224 / 255.0, alpha: 1.0).cgColor
     let width = CGFloat(2.0)
@@ -21,36 +25,62 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupEmailLayer();
+        setupTextFieldBorders()
         
-        setupTickLayer()
+        setupTickLayers()
     }
     
-    private func setupEmailLayer() {
-        let path = UIBezierPath()
-        let yPos = emailTF.bounds.size.height - width
+    private func setupTextFieldBorders() {
+        setupBorder(for: emailTF, shapeLayer: emailBorder)
+        setupBorder(for: passwordTF, shapeLayer: passwordBorder)
+    }
+    
+    private func setupBorder(for textField: UITextField, shapeLayer: CAShapeLayer) {
+        let borderPath = getBorderPath(of : textField)
+        
+        shapeLayer.path = borderPath.cgPath
+        shapeLayer.strokeEnd = 0.0
+        shapeLayer.strokeColor = borderColor
+        shapeLayer.fillColor = borderColor
+        shapeLayer.lineWidth = 2.0
+        textField.layer.addSublayer(shapeLayer)
+    }
+    
+    private func getBorderPath(of textField: UITextField) -> UIBezierPath {
+        let borderPath = UIBezierPath()
+        let yPos = textField.bounds.size.height - width
         
         let start = CGPoint(x: 0, y: yPos)
-        let end = CGPoint(x: emailTF.bounds.size.width, y: yPos)
-        path.move(to: start)
-        path.addLine(to: end)
+        let end = CGPoint(x: textField.bounds.size.width, y: yPos)
+        borderPath.move(to: start)
+        borderPath.addLine(to: end)
         
-        //design path in layer
-        EmailBorder = CAShapeLayer()
-        EmailBorder.path = path.cgPath
-        EmailBorder.strokeEnd = 0.0
-        EmailBorder.strokeColor = borderColor
-        EmailBorder.fillColor = borderColor
-        EmailBorder.lineWidth = 2.0
-        emailTF.layer.addSublayer(EmailBorder)
+        return borderPath
     }
     
-    private func setupTickLayer() {
+    
+    private func setupTickLayers() {
+        setupTickLayer(for: emailTF, shapeLayer: emailTick)
+        setupTickLayer(for: passwordTF, shapeLayer: passwordTick)
+    }
+    
+    private func setupTickLayer(for textField: UITextField, shapeLayer: CAShapeLayer) {
+        let tickPath = getTickPath(of: textField)
+        
+        shapeLayer.path = tickPath.cgPath
+        shapeLayer.strokeColor = borderColor
+        shapeLayer.fillColor = UIColor.clear.cgColor
+        shapeLayer.lineWidth = 2.0
+        shapeLayer.strokeEnd = 0.0
+        textField.layer.addSublayer(shapeLayer)
+    }
+    
+    private func getTickPath(of textField: UITextField) -> UIBezierPath {
         let tickPath = UIBezierPath()
         let spaceToRight = CGFloat(5.0)
         let halfTickHeight = CGFloat(5.0)
-        let xPos = emailTF.bounds.size.width - spaceToRight - halfTickHeight * 3
-        let yPos = (emailTF.bounds.size.height - width) / 2
+        let xPos = textField.bounds.size.width - spaceToRight - halfTickHeight * 3
+        let yPos = (textField.bounds.size.height - width) / 2
         
         let start = CGPoint(x: xPos, y: yPos)
         let end = CGPoint(x: xPos + halfTickHeight, y: yPos + halfTickHeight)
@@ -60,14 +90,7 @@ class SignUpViewController: UIViewController {
         tickPath.addLine(to: end)
         tickPath.addLine(to: end2)
         
-        TickLayer = CAShapeLayer()
-        TickLayer.path = tickPath.cgPath
-        
-        TickLayer.strokeColor = borderColor
-        TickLayer.fillColor = UIColor.clear.cgColor
-        TickLayer.lineWidth = 2.0
-        TickLayer.strokeEnd = 0.0
-        emailTF.layer.addSublayer(TickLayer)
+        return tickPath
     }
     
     
@@ -77,18 +100,39 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func emailValueChanged(_ sender: UITextField) {
-        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.recheck(sender:)), object: sender)
-        self.perform(#selector(self.recheck(sender:)), with: sender, afterDelay: 0.5)
+        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.recheckEmail(sender:)), object: sender)
+        self.perform(#selector(self.recheckEmail(sender:)), with: sender, afterDelay: 0.5)
     }
     
-    @objc private func recheck(sender: UITextField) {
-        TickLayer.removeAllAnimations()
+    @IBAction func passwordValueChanged(_ sender: UITextField) {
+        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.recheckPassword(sender:)), object: sender)
+        self.perform(#selector(self.recheckPassword(sender:)), with: sender, afterDelay: 0.5)
+    }
+    
+    @objc private func recheckEmail(sender: UITextField) {
+        emailTick.removeAllAnimations()
         
         guard let text = sender.text, !text.isEmpty else {
             //            implicit animation
-            TickLayer.strokeEnd = 0.0
+            emailTick.strokeEnd = 0.0
             return
         }
+        
+        setupTickAnimation(for: emailTick)
+    }
+    
+    @objc private func recheckPassword(sender: UITextField) {
+        guard let text = sender.text, !text.isEmpty else {
+            //            implicit animation
+            passwordTick.strokeEnd = 0.0
+            return
+        }
+        
+        setupTickAnimation(for: passwordTick)
+    }
+    
+    private func setupTickAnimation(for tickLayer: CAShapeLayer) {
+        tickLayer.removeAllAnimations()
         
         CATransaction.begin()
         CATransaction.setDisableActions(true)
@@ -97,43 +141,60 @@ class SignUpViewController: UIViewController {
         animation.fromValue = 0.0
         animation.toValue = 1.0
         animation.duration = 0.3
-        TickLayer.strokeEnd = 1.0
-        TickLayer.add(animation, forKey: "drawTickAnimation")
+        tickLayer.strokeEnd = 1.0
+        tickLayer.add(animation, forKey: "drawTickAnimation")
         
         CATransaction.commit()
     }
     
     @IBAction func emailTFFocused(_ sender: UITextField) {
+        setupFocusAnimation(for: emailBorder)
+    }
+    
+    @IBAction func emailTFUnfocused(_ sender: UITextField) {
+        setupUnFocusAnimation(for: emailBorder)
+    }
+    
+    @IBAction func passwordTFFocused(_ sender: UITextField) {
+        setupFocusAnimation(for: passwordBorder)
+    }
+    
+    @IBAction func passwordTFUnfocused(_ sender: UITextField) {
+        setupUnFocusAnimation(for: passwordBorder)
+    }
+    
+    // start or remove 'focus' animation for the border of a text field depends on whether previous animations are finished
+    private func setupFocusAnimation(for borderLayer: CAShapeLayer) {
         CATransaction.begin()
         CATransaction.setDisableActions(true)
         
-        let withdrawAni = EmailBorder.animation(forKey: "withdrawLineAnimation")
-        let drawAni = EmailBorder.animation(forKey: "drawLineAnimation")
+        let withdrawAni = borderLayer.animation(forKey: "withdrawLineAnimation")
+        let drawAni = borderLayer.animation(forKey: "drawLineAnimation")
         
         if drawAni == nil && withdrawAni == nil {
-            EmailBorder.strokeStart = 0.0
+            borderLayer.strokeStart = 0.0
             let animation = CABasicAnimation(keyPath: "strokeEnd")
             
             animation.fromValue = 0.0
             animation.toValue = 1.0
             animation.duration = 0.5
-            EmailBorder.strokeEnd = 1.0
-            EmailBorder.add(animation, forKey: "drawLineAnimation")
+            borderLayer.strokeEnd = 1.0
+            borderLayer.add(animation, forKey: "drawLineAnimation")
         } else {
-            EmailBorder.removeAllAnimations()
-            EmailBorder.strokeStart = 0.0
-            EmailBorder.strokeEnd = 1.0
+            borderLayer.removeAllAnimations()
+            borderLayer.strokeStart = 0.0
+            borderLayer.strokeEnd = 1.0
         }
         
         CATransaction.commit()
     }
     
-    
-    @IBAction func emailTFUnfocused(_ sender: UITextField) {
+    // start or remove 'unfocus' animation of the border of a text field depends on whether previous animations are finished
+    private func setupUnFocusAnimation(for borderLayer: CAShapeLayer) {
         CATransaction.begin()
         CATransaction.setDisableActions(true)
-        let withdrawAni = EmailBorder.animation(forKey: "withdrawLineAnimation")
-        let drawAni = EmailBorder.animation(forKey: "drawLineAnimation")
+        let withdrawAni = borderLayer.animation(forKey: "withdrawLineAnimation")
+        let drawAni = borderLayer.animation(forKey: "drawLineAnimation")
         
         if drawAni == nil && withdrawAni == nil {
             let animation = CABasicAnimation(keyPath: "strokeStart")
@@ -141,21 +202,13 @@ class SignUpViewController: UIViewController {
             animation.fromValue = 0.0
             animation.toValue = 1.0
             animation.duration = 0.5
-            EmailBorder.strokeStart = 1.0
-            EmailBorder.add(animation, forKey: "withdrawLineAnimation")
+            borderLayer.strokeStart = 1.0
+            borderLayer.add(animation, forKey: "withdrawLineAnimation")
         } else {
-            EmailBorder.removeAllAnimations()
-            EmailBorder.strokeStart = 1.0
+            borderLayer.removeAllAnimations()
+            borderLayer.strokeStart = 1.0
         }
         
         CATransaction.commit()
-    }
-    
-    
-    @IBAction func passwordTFFocused(_ sender: UITextField) {
-    }
-    
-    
-    @IBAction func passwordTFUnfocused(_ sender: UITextField) {
     }
 }
