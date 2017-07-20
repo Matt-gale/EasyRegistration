@@ -9,7 +9,7 @@
 import UIKit
 
 class SignUpViewController: UIViewController {
-
+    
     @IBOutlet weak var emailTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
     var EmailBorder: CAShapeLayer!
@@ -20,7 +20,7 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupEmailLayer();
         
         setupTickLayer()
@@ -48,13 +48,13 @@ class SignUpViewController: UIViewController {
     private func setupTickLayer() {
         let tickPath = UIBezierPath()
         let spaceToRight = CGFloat(5.0)
-        let tickHeight = CGFloat(10.0)
-        let xPos = emailTF.bounds.size.width - spaceToRight - tickHeight * 2.73
-        let yPos = (emailTF.bounds.size.height - width - tickHeight) / 2
+        let halfTickHeight = CGFloat(5.0)
+        let xPos = emailTF.bounds.size.width - spaceToRight - halfTickHeight * 3
+        let yPos = (emailTF.bounds.size.height - width) / 2
         
         let start = CGPoint(x: xPos, y: yPos)
-        let end = CGPoint(x: xPos + tickHeight, y: yPos + tickHeight)
-        let end2 = CGPoint(x: xPos + tickHeight * 2.73, y: yPos)
+        let end = CGPoint(x: xPos + halfTickHeight, y: yPos + halfTickHeight)
+        let end2 = CGPoint(x: xPos + halfTickHeight * 3, y: yPos - halfTickHeight)
         
         tickPath.move(to: start)
         tickPath.addLine(to: end)
@@ -69,20 +69,26 @@ class SignUpViewController: UIViewController {
         TickLayer.strokeEnd = 0.0
         emailTF.layer.addSublayer(TickLayer)
     }
-
-
+    
+    
     @IBAction func switchToLoginVC(_ sender: UIButton) {
         let rootVC = UIApplication.shared.delegate!.window!!.rootViewController! as! TransitionViewController
         rootVC.transitionToLoginVC()
     }
     
     @IBAction func emailValueChanged(_ sender: UITextField) {
-        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.reload), object: nil)
-        self.perform(#selector(self.reload), with: nil, afterDelay: 0.5)
+        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.recheck(sender:)), object: sender)
+        self.perform(#selector(self.recheck(sender:)), with: sender, afterDelay: 0.5)
     }
     
-    @objc private func reload() {
+    @objc private func recheck(sender: UITextField) {
         TickLayer.removeAllAnimations()
+        
+        guard let text = sender.text, !text.isEmpty else {
+            //            implicit animation
+            TickLayer.strokeEnd = 0.0
+            return
+        }
         
         CATransaction.begin()
         CATransaction.setDisableActions(true)
@@ -96,7 +102,7 @@ class SignUpViewController: UIViewController {
         
         CATransaction.commit()
     }
-
+    
     @IBAction func emailTFFocused(_ sender: UITextField) {
         CATransaction.begin()
         CATransaction.setDisableActions(true)
