@@ -67,7 +67,7 @@ module.exports = function (grunt) {
                     }
                 ]
             },
-            indexjit: {
+            srcjit: {
                 files: [
                     {
                         expand: true,
@@ -103,7 +103,7 @@ module.exports = function (grunt) {
         less: {
             build: {
                 options: {
-                    paths: [outputWWWRoot + "/app/css"],
+                    paths: ["src/app"],
                     relativeUrls: true,
                     strictUnits: true,
                     strictMath: true,
@@ -113,9 +113,9 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         flatten: true,
-                        dest: outputWWWRoot + "/app",
-                        src: "src/app/less/*.less",
-                        ext: ".css"
+                        dest: "src/app",
+                        src: "src/app/*.component.less",
+                        ext: ".component.css"
                     }
                 ]
             }
@@ -152,16 +152,15 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks("grunt-contrib-clean");
     grunt.loadNpmTasks("grunt-contrib-copy");
     grunt.loadNpmTasks("grunt-contrib-less");
-    grunt.loadNpmTasks("grunt-contrib-watch");
     grunt.loadNpmTasks("grunt-shell");
 
     grunt.registerTask("devBuild", [
         "clean:build",
         "copy:libsjit",
         "copy:fonts",
-        "copy:htmljit",
         "less",
-        "shell:ngc",
-        "copy:indexjit"
+        "copy:htmljit",
+        "copy:srcjit",
+        "shell:ngc"
     ]);
 };

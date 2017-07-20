@@ -8,4 +8,9 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="1.1.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DataAccessLayer\EasyRegistration.DataAccessLayer.csproj" />
+    <ProjectReference Include="..\DTO\EasyRegistration.DTO.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -11,12 +11,12 @@
     "noImplicitAny": false,
     "noEmitOnError": true,
     "declaration": false,
-    "baseUrl": "./",
     "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
     "paths": {
-      "@spa/app*": [ "app*" ]
+      "@spa/app*": [ "src/app*" ]
     },
-    "outDir": "../API/wwwroot/aot"
+    "outDir": "../API/wwwroot"
   },
   "exclude": [
     "main-jit.ts",

@@ -11,8 +11,8 @@
     "noImplicitAny": false,
     "noEmitOnError": true,
     "declaration": false,
-    "baseUrl": "./",
     "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
     "paths": {
       "@spa/app*": [ "src/app*" ]
     },

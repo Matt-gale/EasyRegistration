@@ -11,20 +11,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="src\app\app.component.css" />
     <None Remove="src\app\app.component.html" />
     <None Remove="src\app\app.component.ts" />
     <None Remove="src\app\app.module.ts" />
     <None Remove="src\favicon.ico" />
-    <None Remove="src\styles.css" />
-    <None Remove="src\typings.d.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="package.json">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
-    <Content Include="src\app\app.component.css">
+    <Content Include="src\app\app.component.less">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Include="src\app\app.component.html">
@@ -32,6 +29,9 @@
     </Content>
     <Content Include="src\app\app.component.ts" />
     <Content Include="src\app\app.module.ts" />
+    <Content Include="src\assets\favicon.ico">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
     <Content Include="src\favicon.ico">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
@@ -43,22 +43,12 @@
     <Content Include="src\main-jit.ts">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
-    <Content Include="src\styles.css">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="src\typings.d.ts">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
     <Content Include="tsconfig-aot.json">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Include="tsconfig.json">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="src\assets\" />
   </ItemGroup>
 
 </Project>

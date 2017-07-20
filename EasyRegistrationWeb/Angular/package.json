@@ -3,9 +3,6 @@
   "version": "0.1.0",
   "license": "MIT",
   "private": true,
-  "scripts": {
-    "install": "npm install"
-  },
   "dependencies": {
     "@angular/animations": "4.0.2",
     "@angular/common": "4.0.2",
@@ -32,7 +29,6 @@
     "grunt-contrib-clean": "1.0.0",
     "grunt-contrib-copy": "1.0.0",
     "grunt-contrib-less": "1.4.0",
-    "grunt-contrib-watch": "1.0.0",
     "grunt-shell": "^2.1.0",
     "typescript": "~2.3.3"
   }

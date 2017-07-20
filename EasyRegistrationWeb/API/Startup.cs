@@ -38,13 +38,18 @@ namespace EasyRegistrationWeb
             // Add framework services.
             services.AddMvc();
 
-            services.AddSingleton<IAccountLogic, AccountLogic>();
+            //DI - Logic layer
+            services.AddScoped<IAccountLogic, AccountLogic>();
 
-            services.AddSingleton<IAccountRepository, AccountRepository>();
+            //DI - Repository layer
+            services.AddScoped<IAccountRepository, AccountRepository>();
+
+            //get connection string from configuration files
+            var connString = Configuration["Database:ConnectionString"];
+            var isSqliteDatabase = Configuration["Database:IsSqliteDatabase"] == System.Boolean.TrueString.ToLower();
 
             //set up sqlite or sqlserver database
-            services = EasyRegistrationDBContext.DIRegistration(services, "Data Source=EasyRegistration.db", true);
-            //services = EasyRegistrationDBContext.DIRegistration(services, @"Server=(localdb)\mssqllocaldb;Database=EasyRegistration;Trusted_Connection=True;");
+            services = EasyRegistrationDBContext.DIRegistration(services, connString, isSqliteDatabase);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using EasyRegistration.DTO;
+using EasyRegistration.BusinessLogic.Interfaces;
 
 namespace EasyRegistrationWeb.Controllers
 {
@@ -12,17 +13,27 @@ namespace EasyRegistrationWeb.Controllers
     [Produces("application/json")]
     public class AccountController : BaseController
     {
-        public AccountController(IConfigurationRoot config) : base(config)
-        {
+        private IAccountLogic _accountLogic { get; set; }
 
+        public AccountController(IConfigurationRoot config, IAccountLogic accountLogic) : base(config)
+        {
+            _accountLogic = accountLogic;
         }
 
         [HttpPost]
         [Route("Login")]
         public IActionResult Login([FromBody]LoginDTO dto)
         {
-            //return new JsonResult();
-            return new OkResult();
+            var result = _accountLogic.Login(dto);
+            if(result.Status == ResponseStatus.Success)
+            {
+                return new OkResult();
+            }
+            else
+            {
+                return ShowErrors(result.Errors, 401); //Unauthorised.
+            }
+            
         }
 
         [HttpPost]
