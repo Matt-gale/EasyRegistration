@@ -52,7 +52,7 @@ class TransitionViewController: UIViewController {
         self.transition(from: currentViewController,
                         to: signUpViewController,
                         duration: 0.5,
-                        options: .transitionFlipFromLeft,
+                        options: .transitionCrossDissolve,
                         animations: nil,
                         completion: { _ in
                             self.currentViewController.removeFromParentViewController()
@@ -71,7 +71,7 @@ class TransitionViewController: UIViewController {
         self.transition(from: currentViewController,
                         to: signUpViewController,
                         duration: 0.5,
-                        options: .transitionFlipFromRight,
+                        options: .transitionCrossDissolve,
                         animations: nil,
                         completion: { _ in
                             self.currentViewController.removeFromParentViewController()

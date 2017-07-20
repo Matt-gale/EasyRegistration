@@ -63,6 +63,7 @@ class ViewController: UIViewController {
         let end = start + Double.pi / 2
         let circlePath = UIBezierPath(arcCenter: circleCenter, radius: CGFloat(circleRadius), startAngle: CGFloat(start), endAngle: CGFloat(end), clockwise: false)
         
+        // todo: connect with tick and avoid duplicate layer creation
         let circleLayer = CAShapeLayer()
         circleLayer.path = circlePath.cgPath
         circleLayer.strokeEnd = 0.0
