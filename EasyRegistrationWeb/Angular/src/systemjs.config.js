@@ -4,7 +4,7 @@
     var version = "4.0.2";
 
     var map = {
-        'app': 'app',
+        "@spa": System.baseURL.slice(0, -1),
         '@angular': 'https://unpkg.com/@angular',
         '@angular/common': 'https://unpkg.com/@angular/common@' + version,
         '@angular/compiler': 'https://unpkg.com/@angular/compiler@' + version,
@@ -19,7 +19,7 @@
 
     // packages tells the System loader how to load when no filename and/or no extension
     var packages = {
-        'app': { main: 'main.js', defaultExtension: 'js' },
+        'app': { main: 'main-jit.js', defaultExtension: 'js' },
         'rxjs': { defaultExtension: 'js' }
     };
 
