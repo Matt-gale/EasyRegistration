@@ -3,6 +3,8 @@ package com.easyregistration.easyregistration
 import android.app.Activity
 import android.os.Bundle
 
+import kotlinx.android.synthetic.main.activity_main.*
+
 class MainActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
