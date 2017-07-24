@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyRegistration.DTO", "DTO
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyRegistration.Angular", "Angular\EasyRegistration.Angular.csproj", "{3A6DD6D1-8CC2-4FDA-9B38-17C6A0F08692}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyRegistration.BusinessLogic", "BusinessLogic\EasyRegistration.BusinessLogic.csproj", "{5E7C6DE3-CA15-403C-BFB1-F534358EFDCE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyRegistration.BusinessLogic", "BusinessLogic\EasyRegistration.BusinessLogic.csproj", "{5E7C6DE3-CA15-403C-BFB1-F534358EFDCE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyRegistration.DataAccessLayer", "DataAccessLayer\EasyRegistration.DataAccessLayer.csproj", "{CF350820-9976-49FF-B886-E800D13398AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyRegistration.DataAccessLayer", "DataAccessLayer\EasyRegistration.DataAccessLayer.csproj", "{CF350820-9976-49FF-B886-E800D13398AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyRegistration.Library", "Library\EasyRegistration.Library.csproj", "{95B37D48-9440-426B-BFFE-698C98F52C98}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{CF350820-9976-49FF-B886-E800D13398AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF350820-9976-49FF-B886-E800D13398AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF350820-9976-49FF-B886-E800D13398AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95B37D48-9440-426B-BFFE-698C98F52C98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95B37D48-9440-426B-BFFE-698C98F52C98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95B37D48-9440-426B-BFFE-698C98F52C98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95B37D48-9440-426B-BFFE-698C98F52C98}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using EasyRegistration.DTO;
 using EasyRegistration.BusinessLogic.Interfaces;
+using EasyRegistration.API.ModelValidators;
+using EasyRegistration.Library;
 
 namespace EasyRegistrationWeb.Controllers
 {
@@ -24,6 +26,12 @@ namespace EasyRegistrationWeb.Controllers
         [Route("Login")]
         public IActionResult Login([FromBody]LoginDTO dto)
         {
+            var validationErrors = dto.Validate();
+            if (validationErrors.Any())
+            {
+                return ShowErrors(validationErrors, 401); //Unauthorised.
+            }
+
             var result = _accountLogic.Login(dto);
             if(result.Status == ResponseStatus.Success)
             {

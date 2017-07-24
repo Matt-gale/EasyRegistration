@@ -1,4 +1,5 @@
 ﻿using EasyRegistration.DTO;
+using EasyRegistration.Library;
 using System;
 using System.Collections.Generic;
 using System.Text;

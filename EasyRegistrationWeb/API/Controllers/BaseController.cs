@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.Configuration;
-using EasyRegistration.DTO;
+using EasyRegistration.Library;
 
 namespace EasyRegistrationWeb.Controllers
 {
@@ -30,7 +30,7 @@ namespace EasyRegistrationWeb.Controllers
             var result = new JsonResult(Errors);
             result.StatusCode = StatusCode;
 
-            if (StatusCode != 225)
+            if (StatusCode != 422)
             {
                 var logMessage = Errors.Select(e =>
                 {

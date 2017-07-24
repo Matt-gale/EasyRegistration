@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace EasyRegistration.DTO
+namespace EasyRegistration.Library
 {
     public class CustomException
     {

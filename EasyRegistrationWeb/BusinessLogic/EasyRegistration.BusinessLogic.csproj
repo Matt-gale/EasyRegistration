@@ -11,6 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\DataAccessLayer\EasyRegistration.DataAccessLayer.csproj" />
     <ProjectReference Include="..\DTO\EasyRegistration.DTO.csproj" />
+    <ProjectReference Include="..\Library\EasyRegistration.Library.csproj" />
   </ItemGroup>
 
 </Project>
