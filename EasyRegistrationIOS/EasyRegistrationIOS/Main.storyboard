@@ -21,23 +21,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bpx-Xu-IIx">
-                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bpx-Xu-IIx">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uIt-sW-xN6" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="400" height="568"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="470" height="568"/>
                                         <subviews>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l5h-Pl-3lh" userLabel="Menu Container View">
-                                                <rect key="frame" x="0.0" y="0.0" width="80" height="568"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="150" height="568"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="80" id="pFx-pn-7le"/>
+                                                    <constraint firstAttribute="width" constant="150" id="pFx-pn-7le"/>
                                                 </constraints>
                                                 <connections>
                                                     <segue destination="hmh-Dq-eXy" kind="embed" id="vnv-UV-yJM"/>
                                                 </connections>
                                             </containerView>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aaL-bi-huk" userLabel="Detail Container View">
-                                                <rect key="frame" x="80" y="0.0" width="320" height="568"/>
+                                                <rect key="frame" x="150" y="0.0" width="320" height="568"/>
                                                 <connections>
                                                     <segue destination="yzc-b7-tST" kind="embed" id="1GJ-UX-tcG"/>
                                                 </connections>
@@ -62,20 +62,24 @@
                                     <constraint firstItem="uIt-sW-xN6" firstAttribute="top" secondItem="bpx-Xu-IIx" secondAttribute="top" id="oV1-EM-t6F"/>
                                 </constraints>
                                 <connections>
-                                    <outlet property="delegate" destination="bkh-xL-Sx4" id="gFq-Ui-6mq"/>
+                                    <outlet property="delegate" destination="bkh-xL-Sx4" id="OAV-uo-GBZ"/>
                                 </connections>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="bpx-Xu-IIx" secondAttribute="trailing" id="H1J-3U-O1x"/>
-                            <constraint firstItem="uIt-sW-xN6" firstAttribute="width" secondItem="J0g-7X-SYx" secondAttribute="width" constant="80" id="MCl-R6-HUl"/>
+                            <constraint firstItem="uIt-sW-xN6" firstAttribute="width" secondItem="J0g-7X-SYx" secondAttribute="width" constant="150" id="MCl-R6-HUl"/>
+                            <constraint firstItem="bpx-Xu-IIx" firstAttribute="top" secondItem="J0g-7X-SYx" secondAttribute="top" id="MyU-YT-8Fp"/>
                             <constraint firstItem="4Va-gc-mvj" firstAttribute="top" secondItem="bpx-Xu-IIx" secondAttribute="bottom" id="Xsj-qV-ayu"/>
                             <constraint firstItem="bpx-Xu-IIx" firstAttribute="leading" secondItem="J0g-7X-SYx" secondAttribute="leading" id="py9-BF-otb"/>
-                            <constraint firstItem="bpx-Xu-IIx" firstAttribute="top" secondItem="2lY-gg-WRa" secondAttribute="bottom" id="qaR-gz-iiX"/>
                             <constraint firstItem="uIt-sW-xN6" firstAttribute="height" secondItem="J0g-7X-SYx" secondAttribute="height" id="sX2-Pw-YAq"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="menuContainerView" destination="l5h-Pl-3lh" id="lAV-KH-JVG"/>
+                        <outlet property="scrollView" destination="bpx-Xu-IIx" id="ZKC-c6-9hK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d62-Xw-5OQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -86,15 +90,15 @@
             <objects>
                 <tableViewController id="5bJ-T9-3vq" customClass="MenuViewController" customModule="EasyRegistrationIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="R3x-9F-R3m">
-                        <rect key="frame" x="0.0" y="0.0" width="80" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="150" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="menuVCCell" id="Qa4-dG-muz">
-                                <rect key="frame" x="0.0" y="28" width="80" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="150" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qa4-dG-muz" id="TM2-dE-M8y">
-                                    <rect key="frame" x="0.0" y="0.0" width="80" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="150" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -114,9 +118,10 @@
         <scene sceneID="YBk-PM-JLA">
             <objects>
                 <navigationController id="hmh-Dq-eXy" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4ov-8D-bBQ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="4ov-8D-bBQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.0035952227190000001" green="0.63301527499999999" blue="0.88872671130000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="5bJ-T9-3vq" kind="relationship" relationship="rootViewController" id="m0G-MH-xjv"/>
@@ -158,6 +163,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YAH-eG-mce">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.0035952227190000001" green="0.63301527499999999" blue="0.88872671130000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -166,7 +172,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jia-x0-90u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="772.5" y="108.80281690140845"/>
+            <point key="canvasLocation" x="876" y="109"/>
         </scene>
     </scenes>
 </document>
