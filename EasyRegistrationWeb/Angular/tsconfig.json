@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "sourceMap": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "suppressImplicitAnyIndexErrors": true,
+
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "declaration": false,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "paths": {
+      "@spa/app*": [ "src/app*" ]
+    },
+    "outDir": "../API/wwwroot"
+  },
+  "exclude": [
+    "main-aot.ts",
+    "node_modules"
+  ]
+}

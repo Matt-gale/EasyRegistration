@@ -1,0 +1,25 @@
+﻿https://docs.microsoft.com/en-us/ef/core/get-started/aspnetcore/new-db
+https://docs.microsoft.com/en-us/ef/core/get-started/netcore/new-db-sqlite
+
+1. create new library project
+
+2. Open the Package Manager Console (PMC): Tools > NuGet Package Manager > Package Manager Console
+Enter: PM> Install-Package Microsoft.EntityFrameworkCore.SqlServer
+Enter: PM> Install-Package Microsoft.EntityFrameworkCore.Tools
+
+3. Manage Nuget Packages for project:
+add Microsoft.EntityFrameworkCore
+add Microsoft.EntityFrameworkCore.design
+add Microsoft.EntityFrameworkCore.Sqlite
+add Microsoft.EntityFrameworkCore.SqlServer
+
+4. Add DbContext subclass.
+
+5. register db with startup.cs
+services.AddDbContext<BloggingContext>(options => options.UseSqlServer(connectionString));
+services.AddDbContext<EasyRegistrationDBContext>(options => options.UseSqlite(connectionString));
+
+6.
+Run 'dotnet ef migrations add InitialCreate' or 'Add-Migration InitialCreate' to scaffold a migration and create the initial set of tables for the model.
+Run 'dotnet ef database update' or 'Update-Database' to apply the new migration to the database. This command creates the database before applying migrations.
+

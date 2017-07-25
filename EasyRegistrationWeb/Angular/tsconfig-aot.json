@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "suppressImplicitAnyIndexErrors": true,
+
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "declaration": false,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "paths": {
+      "@spa/app*": [ "src/app*" ]
+    },
+    "outDir": "../API/wwwroot"
+  },
+  "exclude": [
+    "main-jit.ts",
+    "node_modules"
+  ]
+}

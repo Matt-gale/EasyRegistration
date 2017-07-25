@@ -15,6 +15,7 @@ using EasyRegistration.BusinessLogic.Concretes;
 using EasyRegistration.DataAccessLayer.Interfaces;
 using EasyRegistration.DataAccessLayer.Concretes;
 using EasyRegistration.DataAccessLayer.Entities;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace EasyRegistrationWeb
 {
@@ -38,6 +39,9 @@ namespace EasyRegistrationWeb
             // Add framework services.
             services.AddMvc();
 
+            // Add configuration to services.
+            services.AddSingleton(_ => Configuration);
+            
             //DI - Logic layer
             services.AddScoped<IAccountLogic, AccountLogic>();
 
@@ -50,6 +54,13 @@ namespace EasyRegistrationWeb
 
             //set up sqlite or sqlserver database
             services = EasyRegistrationDBContext.DIRegistration(services, connString, isSqliteDatabase);
+
+            // Register the Swagger generator, defining one or more Swagger documents
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -90,6 +101,15 @@ namespace EasyRegistrationWeb
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+            });
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS etc.), specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
         }
     }

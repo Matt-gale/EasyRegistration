@@ -1,0 +1,63 @@
+﻿Basic procedures:
+1. Copy all angular files from the src folder into the wwwroot folder that are necessary for compilation.
+2. Compile angular and run application.
+
+relevant files:
+
+  setup and config files:
+    index-jit.html - the application starts here. It will reference main-jis.js and systemjs and any other javascript that isn't directly referenced by angular.
+    gruntfile.js - the work horse.
+    tsconfig.json - typescript/angular compiler configuration.
+    tsconfig.json - typescript/angular compiler configuration after the files have been copied.
+    systemjs.config.js - this is systemjs configuration for loading the 
+    package.json - this houses all packages that angular require.
+    main-jit.ts - the start point for angular
+
+  angular:
+    app.module.ts - the angular module.
+    app.component.ts - beginning component
+    app.component.html - beginning template
+    app.component.less - beginning less/css
+
+
+relevate grunt file processes:
+
+  copy:fonts - font-awesome and it's associated css.
+  copy:libsjit - the additional libraries required by the project. shim/zone/Reflect/systemjs
+  copy:htmljit - the main source files used for the application html/css.
+  copy:srcjit - the files that configure the app.
+
+  less - compile less files
+
+  shell:ngc - compiles using the angular compiler and finds errors in compilation.
+
+  clean:build - cleans the wwwroot folder.
+
+
+relevant information for tsconfig.json:
+  module must be set to commonjs for systemjs to load files. if it's set to es2015 it requires an additional transpiler. es2015/commonjs are fairly similar.
+  baseurl - compiler looks for files here.
+  paths - this adds absolute paths with a variable '@spa/app' prefix. 
+  allowSyntheticDefaultImports - this is a requirement for ngc/rollup.
+  outDir - compiler output's it's files here.
+  exclude - exclude node_modules. the copy:libs grunt process should copy all necessary libraries. 
+            exclude main-aot.ts because it doesn't compile without the app.module.ngfactory file created by this compilation (chicken and egg).
+
+systemjs config:
+  this loads packages dynamically on initial load and can be quite intensive.
+  All angular and rxjs packages are loaded from unpkg.com to help with load time.
+  It also loads main-jit.js as the inital part of the application.
+
+app.module.ts / app.component.ts
+  note that '@spa/app' is used to reference all other files (except for setting up a @Component).
+  all @Component's should have 'moduleId: module.id' and should have no absolute or relative paths at all. They should be kept in the same folder.
+
+
+ngc/angular compilation notes:
+  Remove 'as' type when creating jsonlike objects. use typescript instead of javascript {} empty weak typed objects.
+  Don’t use require statements for your templates or styles, use styleUrls and templateUrls, the angular2-template-loader plugin will change it to require at build time.
+  Don’t use default exports.
+  Don’t use form.controls.controlName, use form.get(‘controlName’)
+  Don’t use control.errors?.someError, use control.hasError(‘someError’)
+  Don’t use functions in your providers, routes or declarations, export a function and then reference that function name
+  Inputs, Outputs, View or Content Child(ren), Hostbindings, and any field you use from the template or annotate for Angular should be public
