@@ -116,6 +116,13 @@ module.exports = function (grunt) {
                         dest: "src/app",
                         src: "src/app/*.component.less",
                         ext: ".component.css"
+                    },
+                    {
+                        expand: true,
+                        flatten: true,
+                        dest: "src/app/shared/signature-pad",
+                        src: "src/app/shared/signature-pad/*.component.less",
+                        ext: ".component.css"
                     }
                 ]
             }
@@ -139,7 +146,10 @@ module.exports = function (grunt) {
         clean: {
             build: {
                 src: [
-                    outputWWWRoot + "/**/*.*"
+                    outputWWWRoot + "/**/*.*",
+                    "src/app/**/*.ngsummary.json",
+                    "src/app/**/*.ngfactory.ts",
+                    "src/app/**/*.css*"
                 ],
                 options: {
                     force: true

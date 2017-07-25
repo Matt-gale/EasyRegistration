@@ -21,13 +21,20 @@
     <Content Include="package.json">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
-    <Content Include="src\app\app.component.less">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
     <Content Include="src\app\app.component.html">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
+    <Content Include="src\app\app.component.less">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
     <Content Include="src\app\app.component.ts" />
+    <Content Include="src\app\shared\signature-pad\signature-pad.component.less">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="src\app\shared\signature-pad\signature-pad.component.html">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="src\app\shared\signature-pad\signature-pad.component.ts" />
     <Content Include="src\app\app.module.ts" />
     <Content Include="src\assets\favicon.ico">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
