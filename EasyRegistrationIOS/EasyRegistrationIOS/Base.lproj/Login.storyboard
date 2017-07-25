@@ -94,6 +94,9 @@
                                         <state key="normal" title="Login">
                                             <color key="titleColor" red="0.0" green="0.63303881883621216" blue="0.88875037431716919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wDh-Nv-8W8"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hts-R6-ray">
                                         <rect key="frame" x="10" y="449" width="142" height="16"/>
