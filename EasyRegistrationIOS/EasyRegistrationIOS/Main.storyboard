@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -85,56 +85,66 @@
             </objects>
             <point key="canvasLocation" x="-108.75" y="108.80281690140845"/>
         </scene>
-        <!--Menu View Controller-->
-        <scene sceneID="MhL-T2-sgN">
-            <objects>
-                <tableViewController id="5bJ-T9-3vq" customClass="MenuViewController" customModule="EasyRegistrationIOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="R3x-9F-R3m">
-                        <rect key="frame" x="0.0" y="0.0" width="150" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="menuVCCell" id="Qa4-dG-muz">
-                                <rect key="frame" x="0.0" y="28" width="150" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qa4-dG-muz" id="TM2-dE-M8y">
-                                    <rect key="frame" x="0.0" y="0.0" width="150" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="5bJ-T9-3vq" id="gta-9b-pOi"/>
-                            <outlet property="delegate" destination="5bJ-T9-3vq" id="2M6-t3-5ST"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="MZM-Cw-3pR"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UoM-17-Dxf" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="319" y="918"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="YBk-PM-JLA">
             <objects>
                 <navigationController id="hmh-Dq-eXy" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="4ov-8D-bBQ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4ov-8D-bBQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0035952227190000001" green="0.63301527499999999" blue="0.88872671130000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="5bJ-T9-3vq" kind="relationship" relationship="rootViewController" id="m0G-MH-xjv"/>
+                        <segue destination="llZ-H6-LLv" kind="relationship" relationship="rootViewController" id="WMo-AX-FZf"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oIb-DF-feH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-109" y="919"/>
+            <point key="canvasLocation" x="-109" y="918"/>
+        </scene>
+        <!--Menu View Controller-->
+        <scene sceneID="J8n-FK-yFh">
+            <objects>
+                <viewController id="llZ-H6-LLv" userLabel="Menu View Controller" customClass="MenuViewController" customModule="EasyRegistrationIOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RtY-ab-k5E"/>
+                        <viewControllerLayoutGuide type="bottom" id="1I2-pQ-TeH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="iXz-nd-MRu">
+                        <rect key="frame" x="0.0" y="0.0" width="150" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yT6-E2-aLz">
+                                <rect key="frame" x="42.5" y="94" width="65" height="35"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <state key="normal" title="Log out">
+                                    <color key="titleColor" red="0.0035952227190000001" green="0.63301527499999999" blue="0.88872671130000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="logout:" destination="llZ-H6-LLv" eventType="touchUpInside" id="fPu-qq-gwF"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="yT6-E2-aLz" firstAttribute="centerX" secondItem="iXz-nd-MRu" secondAttribute="centerX" id="be9-Qz-GRM"/>
+                            <constraint firstItem="yT6-E2-aLz" firstAttribute="top" secondItem="RtY-ab-k5E" secondAttribute="bottom" constant="30" id="rMn-VA-4rN"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Zra-qb-38o"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AIO-5G-OXT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="480" y="918"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="Vhn-uT-pzq">
             <objects>
                 <viewController id="1xe-T7-8Zu" userLabel="Detail View Controller" customClass="DetailViewController" customModule="EasyRegistrationIOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qar-S6-jsL"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ykt-KI-Yob"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="5D2-og-O4E">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

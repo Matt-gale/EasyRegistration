@@ -8,14 +8,15 @@
 
 import UIKit
 
-class MenuViewController: UITableViewController {
+class MenuViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController!.navigationBar.clipsToBounds = true
-        
     }
 
-
+    @IBAction func logout(_ sender: UIButton) {
+        let rootVC = UIApplication.shared.delegate!.window!!.rootViewController! as! TransitionViewController
+        rootVC.transitionToLoginVC()
+    }
 }
