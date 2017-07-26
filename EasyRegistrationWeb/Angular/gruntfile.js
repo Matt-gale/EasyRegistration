@@ -122,7 +122,7 @@ module.exports = function (grunt) {
                         flatten: true,
                         dest: "src/app/shared/signature-pad",
                         src: "src/app/shared/signature-pad/*.component.less",
-                        ext: ".component.css"
+                        ext: ".component.css" 
                     }
                 ]
             }

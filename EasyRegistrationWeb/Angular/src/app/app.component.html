@@ -18,4 +18,8 @@
   </li>
 </ul>
 
-<signature-pad [options]="signatureOptions"></signature-pad>
+<signature-pad [options]="signatureOptions" (output)="recieveSignaturePadOutput($event)"></signature-pad>
+
+<div *ngIf="signaturePadOutput != null && signaturePadOutput.length > 0">
+    <span>{{signaturePadOutput}}</span>
+</div>

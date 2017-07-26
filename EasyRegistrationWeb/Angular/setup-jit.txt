@@ -61,3 +61,48 @@ ngc/angular compilation notes:
   Don’t use control.errors?.someError, use control.hasError(‘someError’)
   Don’t use functions in your providers, routes or declarations, export a function and then reference that function name
   Inputs, Outputs, View or Content Child(ren), Hostbindings, and any field you use from the template or annotate for Angular should be public
+
+  https://stackoverflow.com/questions/42653325/aot-cant-resolve-all-parameters-for
+
+
+
+Because the AOT compiler supports only a small subset of JavaScript. This fact is poorly documented, where documented at all, and not widely publicized.
+
+It is unable to parse many JavaScript expressions inside of Angular 2 framework decorators. This includes function calls they are not legal.
+
+The following code causes failure
+
+useFactory(): Context {
+  return activeContextFn();
+}
+The reason for this is that angular2 decorators under AOT are not decorators at all.
+
+The Angular 2 AOT compiler maintains a list of known decorators that it does not persist at runtime, instead treating them as nothing more than annotations*. 
+This means they can only contain constant expressions, references to exported names, 
+a few forms of array literal syntax and object literal syntax that are composed of constant expressions, and little else.
+
+In case you're wondering, yes this means you are no longer writing TypeScript code and thusly are no longer writing JavaScript code. 
+Incidentally it also means you can not trust most of your tools as they will give you a green light for invalid code because they are not aware of the language.
+
+It is a different language with different semantics and not simply a subset because the decorator transform that it performs violates 
+the specification for that feature in ECMAScript. Typescript does not add or modify any runtime behavior of ECMAScript.
+
+*For reference, the term annotation is used here as it relates to the now dead at @Script language. 
+This is the language the Angular team invented to write their framework in and started using heavily, via dedicated transpiler, 
+before they moved to TypeScript.
+
+In this specific case I think you need to rewrite your factory as follows:
+
+useFactory: contextFactory
+
+....
+
+export function contextFactory() {
+    return activeContextFn();
+}
+This may not be all that you need to do and the language will no doubt change over time. It is slated to have IDE support.
+
+Here is a fairly useful "sandbox" https://github.com/rangle/angular-2-aot-sandbox
+
+Be aware that the repository linked above is not an official source of documentation and that it defines its own subset based on its capabilities. 
+Use with caution.
