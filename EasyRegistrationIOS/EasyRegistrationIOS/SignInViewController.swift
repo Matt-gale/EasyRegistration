@@ -135,5 +135,9 @@ class SignInViewController: UIViewController {
         rootVC.transitionToSignUpVC()
     }
     
+    @IBAction func login(_ sender: UIButton) {
+        let rootVC = UIApplication.shared.delegate!.window!!.rootViewController! as! TransitionViewController
+        rootVC.transitionToMainVC()
+    }
 }
 

@@ -12,15 +12,22 @@ class TransitionViewController: UIViewController {
     private var currentViewController: UIViewController!
     
     private lazy var loginViewController: SignInViewController = {
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let storyboard = UIStoryboard(name: "Login", bundle: Bundle.main)
         var viewController = storyboard.instantiateViewController(withIdentifier: "loginVC") as! SignInViewController
         
         return viewController
     }()
     
     private lazy var signUpViewController: SignUpViewController = {
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let storyboard = UIStoryboard(name: "Login", bundle: Bundle.main)
         var viewController = storyboard.instantiateViewController(withIdentifier: "signUpVC") as! SignUpViewController
+        
+        return viewController
+    }()
+    
+    private lazy var mainViewController: MainViewController = {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        var viewController = storyboard.instantiateViewController(withIdentifier: "mainVC") as! MainViewController
         
         return viewController
     }()
@@ -61,6 +68,25 @@ class TransitionViewController: UIViewController {
                             self.signUpViewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
                             self.signUpViewController.didMove(toParentViewController: self)
                             self.currentViewController = self.signUpViewController
+        })
+    }
+    
+    public func transitionToMainVC() {
+        addChildViewController(mainViewController)
+        view.addSubview(mainViewController.view)
+        
+        self.transition(from: currentViewController,
+                        to: mainViewController,
+                        duration: 0.5,
+                        options: .transitionCurlUp,
+                        animations: nil,
+                        completion: { _ in
+                            self.currentViewController.removeFromParentViewController()
+                            
+                            self.mainViewController.view.frame = self.view.bounds
+                            self.mainViewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+                            self.mainViewController.didMove(toParentViewController: self)
+                            self.currentViewController = self.mainViewController
         })
     }
     
