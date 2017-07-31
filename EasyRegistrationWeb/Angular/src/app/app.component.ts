@@ -13,10 +13,15 @@ export class AppComponent {
     title = 'app';
 
     signatureOptions: SignaturePadOptions = new SignaturePadOptions();
+    signaturePadOutput: string = "";
 
     constructor() {
         this.signatureOptions.minWidth = 5;
         this.signatureOptions.maxWidth = 10;
-        this.signatureOptions.penColor = "rgb(66, 133, 244)";
+        this.signatureOptions.penColor = "black";
+    }
+
+    recieveSignaturePadOutput(event) {
+        this.signaturePadOutput = event;
     }
 }

@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, ViewChild, HostListener, Input, ElementRef} from '@angular/core';
+import { Component, ViewEncapsulation, ViewChild, HostListener, Input, ElementRef, Output, EventEmitter } from '@angular/core';
 
 
 //https://github.com/szimek/signature_pad/blob/master/src/signature_pad.js
@@ -35,6 +35,7 @@ export class SignaturePad {
     throttle;
 
     @Input() options: SignaturePadOptions;
+    @Output() output = new EventEmitter<string>();
 
     constructor() {
 
@@ -68,6 +69,12 @@ export class SignaturePad {
 
         this._handleMouseEvents();
         this._handleTouchEvents();
+
+        window.onresize = (e) => {
+            this.resizeCanvas();
+        }
+
+        this.resizeCanvas();
     }
 
     _data;
@@ -77,6 +84,18 @@ export class SignaturePad {
         this._isEmpty;
     }
 
+    // Adjust canvas coordinate space taking into account pixel ratio,
+    // to make it look crisp on mobile devices.
+    // This also causes canvas to be cleared.
+    resizeCanvas() {
+        // When zoomed out to less than 100%, for some very strange reason,
+        // some browsers report devicePixelRatio as less than 1
+        // and only part of the canvas is cleared then.
+        var ratio = Math.max(window.devicePixelRatio || 1, 1);
+        this._canvas.nativeElement.width = this._canvas.nativeElement.offsetWidth * ratio;
+        this._canvas.nativeElement.height = this._canvas.nativeElement.offsetHeight * ratio;
+        this._canvas.nativeElement.getContext("2d").scale(ratio, ratio);
+    }
     
     clear() {
         const ctx = this._ctx;
@@ -512,7 +531,7 @@ export class SignaturePad {
         if (this.isEmpty()) {
             alert("Please provide signature first.");
         } else {
-            window.open(this.toDataURL(null));
+            this.output.emit(this.toDataURL(null))
         }
     }
 
@@ -520,7 +539,7 @@ export class SignaturePad {
         if (this.isEmpty()) {
             alert("Please provide signature first.");
         } else {
-            window.open(this.toDataURL('image/svg+xml'));
+            this.output.emit(this.toDataURL('image/svg+xml'));
         }
     }
 
