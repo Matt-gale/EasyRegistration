@@ -63,3 +63,4 @@ ngc/angular compilation notes:
   Inputs, Outputs, View or Content Child(ren), Hostbindings, and any field you use from the template or annotate for Angular should be public
 
 https://stackoverflow.com/questions/42653325/aot-cant-resolve-all-parameters-for
+https://github.com/rangle/angular-2-aot-sandbox/blob/master/README.md
