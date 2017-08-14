@@ -8,6 +8,7 @@ using EasyRegistration.DTO;
 using EasyRegistration.BusinessLogic.Interfaces;
 using EasyRegistration.API.ModelValidators;
 using EasyRegistration.Library;
+using Microsoft.Extensions.Logging;
 
 namespace EasyRegistrationWeb.Controllers
 {
@@ -17,7 +18,7 @@ namespace EasyRegistrationWeb.Controllers
     {
         private IAccountLogic _accountLogic { get; set; }
 
-        public AccountController(IConfigurationRoot config, IAccountLogic accountLogic) : base(config)
+        public AccountController(IConfigurationRoot config, IAccountLogic accountLogic, ILogger<AccountController> logger) : base(config, logger)
         {
             _accountLogic = accountLogic;
         }

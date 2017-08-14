@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.Configuration;
 using EasyRegistration.Library;
+using Microsoft.Extensions.Logging;
 
 namespace EasyRegistrationWeb.Controllers
 {
@@ -13,10 +14,12 @@ namespace EasyRegistrationWeb.Controllers
     public abstract class BaseController : Controller
     {
         protected IConfigurationRoot _config;
+        protected ILogger _logger;
 
-        public BaseController(IConfigurationRoot config)
+        public BaseController(IConfigurationRoot config, ILogger logger)
         {
             _config = config;
+            _logger = logger;
         }
 
         protected IActionResult ShowErrors(List<CustomException> Errors, int StatusCode = 422)
@@ -43,7 +46,7 @@ namespace EasyRegistrationWeb.Controllers
                 })
                 .Aggregate((f, s) => f + " " + s).ToString();
 
-                //_logger.LogInformation("Returning Error: statusCode: {0}, Errors: {1}", StatusCode, logMessage);
+                _logger.LogInformation("Returning Error: statusCode: {0}, Errors: {1}", StatusCode, logMessage);
 
             }
             return result;

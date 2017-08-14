@@ -3,8 +3,9 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using EasyRegistration.DataAccessLayer.Entities;
 
-namespace EasyRegistration.DataAccessLayer.Entities
+namespace EasyRegistration.DataAccessLayer
 {
     public class EasyRegistrationDBContext : DbContext
     {
