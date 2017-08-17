@@ -95,7 +95,7 @@ class TransitionViewController: UIViewController {
         view.addSubview(loginViewController.view)
         
         self.transition(from: currentViewController,
-                        to: signUpViewController,
+                        to: loginViewController,
                         duration: 0.5,
                         options: .transitionCrossDissolve,
                         animations: nil,
